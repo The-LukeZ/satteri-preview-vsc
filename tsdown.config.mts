@@ -14,7 +14,7 @@ export default defineConfig([
     target: "node18",
     deps: {
       // `vscode` is provided by the host; `satteri` is a native (napi-rs) module
-      // that must not be bundled — it is required from node_modules at runtime.
+      // that must not be bundled - it is required from node_modules at runtime.
       neverBundle: ["vscode", "satteri", "satteri-expressive-code"],
     },
     dts: false,

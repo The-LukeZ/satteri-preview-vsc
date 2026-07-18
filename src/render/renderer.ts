@@ -1,10 +1,10 @@
-import * as vscode from "vscode";
 import { markdownToHtml, type Features, type Frontmatter } from "satteri";
+import * as vscode from "vscode";
+import { renderSignature, type PreviewConfig } from "../config";
+import { renderFrontmatter } from "./frontmatter";
 import { codeHighlightPlugin, type ThemeMode } from "./plugins/codeHighlight";
 import { headingAnchorsPlugin } from "./plugins/headingAnchors";
 import { resourceUrisPlugin } from "./plugins/resourceUris";
-import { renderFrontmatter } from "./frontmatter";
-import { type PreviewConfig, renderSignature } from "../config";
 
 export interface RenderResult {
   html: string;
@@ -29,7 +29,7 @@ export class Renderer {
    * `webview` + `docDir` feed the resource-URI plugin, which rewrites relative
    * `img`/`a` paths to panel-specific webview URIs. Because that output is
    * webview-specific, the cache key includes `webview.cspSource` (a per-webview
-   * authority) — two panels on the same document don't share a rewrite.
+   * authority) - two panels on the same document don't share a rewrite.
    */
   async render(
     document: vscode.TextDocument,

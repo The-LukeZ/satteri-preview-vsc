@@ -1,9 +1,9 @@
-import * as vscode from "vscode";
 import * as path from "path";
-import { Renderer } from "./render/renderer";
-import { renderHtmlDocument, renderErrorBody } from "./render/htmlDocument";
+import * as vscode from "vscode";
+import { affectsConfig, readConfig } from "./config";
+import { renderErrorBody, renderHtmlDocument } from "./render/htmlDocument";
 import { themeModeForKind } from "./render/plugins/codeHighlight";
-import { readConfig, affectsConfig } from "./config";
+import { Renderer } from "./render/renderer";
 import { debounce, type Debounced } from "./util/debounce";
 
 const VIEW_TYPE = "satteriMarkdownPreview";
@@ -136,7 +136,7 @@ export class PreviewPanel {
    * loadable. Absolute paths are used as-is; relative paths resolve against the
    * document's workspace folder (or its containing directory when the file is
    * outside any workspace). The resolved location must be under a
-   * `localResourceRoots` entry or the webview silently drops it — see
+   * `localResourceRoots` entry or the webview silently drops it - see
    * `resourceRoots()`, which whitelists the workspace folder / doc dir.
    */
   private customCssUri(customCss: string): vscode.Uri | undefined {

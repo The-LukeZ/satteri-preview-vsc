@@ -146,7 +146,7 @@ pre code {
 }
 
 /* Expressive Code wraps fenced blocks in its own `.expressive-code` div, which
- * carries no block margin — restore spacing to match surrounding elements. */
+ * carries no block margin - restore spacing to match surrounding elements. */
 .expressive-code {
   margin: 0 0 1em;
 }

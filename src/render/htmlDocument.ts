@@ -47,7 +47,7 @@ export function renderHtmlDocument(ctx: HtmlDocumentContext): string {
   // Expressive Code injects its theme CSS as inline `<style>` blocks. Tag them
   // with our nonce (see nonceStyles) so they pass the strict CSP without
   // `'unsafe-inline'`. EC's copy button is disabled (see codeHighlight.ts), so
-  // no `<script>` is injected — every author-supplied script stays CSP-blocked.
+  // no `<script>` is injected - every author-supplied script stays CSP-blocked.
   const bodyHtml = nonceStyles(body, n);
 
   const csp = [

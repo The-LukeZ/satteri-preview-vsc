@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
 import { defineHastPlugin, type HastPluginDefinition } from "satteri";
+import * as vscode from "vscode";
 
 /** Attributes rewritten per element: relative paths -> webview URIs. */
 const TARGETS: Record<string, string> = {
@@ -51,7 +51,7 @@ function resolve(
  * untouched.
  *
  * Built per (webview, docDir): webview URIs are panel-specific, so this must
- * not be a shared cross-document definition — see the cache note in
+ * not be a shared cross-document definition - see the cache note in
  * `renderer.ts`.
  */
 export function resourceUrisPlugin(

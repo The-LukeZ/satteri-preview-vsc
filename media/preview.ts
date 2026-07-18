@@ -1,6 +1,6 @@
 // Webview-side script. Runs inside the preview panel context (browser-like,
 // no Node). Signals readiness and handles in-page anchor clicks (M3), since
-// webviews don't do native URL-fragment navigation — heading ids come from the
+// webviews don't do native URL-fragment navigation - heading ids come from the
 // headingAnchors HAST plugin.
 declare function acquireVsCodeApi(): { postMessage(msg: unknown): void };
 

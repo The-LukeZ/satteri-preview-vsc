@@ -1,7 +1,7 @@
 /**
  * Trailing-edge debounce. Collapses bursts of calls (e.g. rapid keystrokes)
  * into a single invocation `waitMs` after the last call. `cancel()` clears a
- * pending call — used on dispose so a queued render never hits a dead webview.
+ * pending call - used on dispose so a queued render never hits a dead webview.
  */
 export interface Debounced<A extends unknown[]> {
   (...args: A): void;

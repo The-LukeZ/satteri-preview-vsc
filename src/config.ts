@@ -32,7 +32,7 @@ export function readConfig(scope?: vscode.Uri): PreviewConfig {
 /**
  * A stable signature of the settings that affect rendered HTML. Used as part of
  * the render cache key so a settings change busts stale output. `customCss` is
- * excluded — it only affects the webview shell (a `<link>`), not the body.
+ * excluded - it only affects the webview shell (a `<link>`), not the body.
  */
 export function renderSignature(cfg: PreviewConfig): string {
   return `${cfg.gfm ? 1 : 0}${cfg.math ? 1 : 0}${cfg.showFrontmatter ? 1 : 0}`;

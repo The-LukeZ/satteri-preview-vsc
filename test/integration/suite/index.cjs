@@ -1,6 +1,6 @@
 // In-host test suite. @vscode/test-electron calls `run()` inside the Extension
 // Development Host (Electron/Node), where `require("vscode")` and the native
-// `satteri` module are available. Hand-rolled runner — no mocha dependency; the
+// `satteri` module are available. Hand-rolled runner - no mocha dependency; the
 // assertions are simple enough that node:assert + a for-loop covers it.
 const assert = require("node:assert");
 const path = require("node:path");
@@ -51,7 +51,7 @@ async function run() {
   });
 
   let failed = 0;
-  console.log("\nSätteri Markdown Preview — integration");
+  console.log("\nSätteri Markdown Preview - integration");
   for (const t of tests) {
     try {
       await t.fn();

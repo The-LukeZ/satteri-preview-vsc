@@ -1,4 +1,4 @@
-# Source & build config — not shipped
+# Source & build config - not shipped
 src/**
 test/**
 media/**/*.ts
@@ -15,7 +15,7 @@ PLAN.md
 # @bruits/ (e.g. @bruits/satteri-win32-x64-msvc). The `satteri` and
 # `satteri-expressive-code` packages are the JS wrappers. bun/npm only install
 # the @bruits/* optionalDependency matching the current os/cpu, so a vsix built
-# on one platform ships only that platform's binary — use `vsce package
+# on one platform ships only that platform's binary - use `vsce package
 # --target <platform>` per target (see .github/workflows/ci.yml) for multi-
 # platform Marketplace releases.
 node_modules/**

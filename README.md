@@ -30,7 +30,7 @@ Open a `.md` file and run **Sätteri: Open Preview** from the command palette or
 | --------------------------------- | ------------------------------------------------- |
 | Sätteri: Open Preview             | <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> |
 | Sätteri: Open Preview to the Side | <kbd>Ctrl/Cmd</kbd>+<kbd>K</kbd> <kbd>V</kbd>     |
-| Sätteri: Refresh Preview          | —                                                 |
+| Sätteri: Refresh Preview          | -                                                 |
 
 These keybindings match VS Code's **built-in** Markdown preview, so with both
 installed the two collide. To make Sätteri win, unbind the built-in ones in your
@@ -53,8 +53,8 @@ installed the two collide. To make Sätteri win, unbind the built-in ones in you
 ## Testing
 
 Unit tests run in **Bun** (native `bun:test`); the `vscode` and `satteri`
-modules are mocked (see `test/setup.ts`), so they cover the pure logic — HAST
-plugins, the HTML shell/CSP, config, debounce — without a host or the native
+modules are mocked (see `test/setup.ts`), so they cover the pure logic - HAST
+plugins, the HTML shell/CSP, config, debounce - without a host or the native
 engine.
 
 ```sh

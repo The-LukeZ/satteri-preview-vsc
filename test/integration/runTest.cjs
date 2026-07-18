@@ -1,6 +1,6 @@
 // Downloads a throwaway VS Code build and launches it with this extension
 // loaded, then runs the in-host suite (suite/index.cjs). This is the only place
-// the real `satteri` native module and the `vscode` API are exercised — proving
+// the real `satteri` native module and the `vscode` API are exercised - proving
 // the napi-rs binary resolves inside the extension host (risk #1).
 const path = require("node:path");
 const { runTests } = require("@vscode/test-electron");
