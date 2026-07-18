@@ -114,7 +114,8 @@
     "test:watch": "bun test --watch test/unit",
     "test:integration": "tsdown && node ./test/integration/runTest.cjs",
     "package": "vsce package",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "release": "bun ./scripts/release.mjs --all-targets"
   },
   "dependencies": {
     "satteri": "^0.9.0",
