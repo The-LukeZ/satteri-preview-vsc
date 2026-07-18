@@ -6,7 +6,7 @@ const assert = require("node:assert");
 const path = require("node:path");
 const vscode = require("vscode");
 
-const EXTENSION_ID = "the-lukezz.satteri-markdown-preview";
+const EXTENSION_ID = "thelukez.satteri-markdown-preview";
 
 async function run() {
   const tests = [];
