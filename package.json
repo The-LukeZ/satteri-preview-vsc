@@ -1,0 +1,141 @@
+{
+  "name": "satteri-markdown-preview",
+  "displayName": "Sätteri Markdown Preview",
+  "description": "Live Markdown preview powered by the Sätteri (Rust) Markdown engine.",
+  "version": "0.0.1",
+  "publisher": "the-lukezz",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "./assets/logo/logo_dark.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/The-LukeZ/satteri-preview-vsc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/The-LukeZ/satteri-preview-vsc/issues"
+  },
+  "homepage": "https://github.com/The-LukeZ/satteri-preview-vsc#readme",
+  "main": "./dist/extension.cjs",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "satteriMarkdownPreview.open",
+        "title": "Sätteri: Open Preview",
+        "icon": {
+          "dark": "./assets/logo/logo_dark.png",
+          "light": "./assets/logo/logo_light.png"
+        }
+      },
+      {
+        "command": "satteriMarkdownPreview.openToSide",
+        "title": "Sätteri: Open Preview to the Side",
+        "icon": {
+          "dark": "./assets/logo/logo_dark.png",
+          "light": "./assets/logo/logo_light.png"
+        }
+      },
+      {
+        "command": "satteriMarkdownPreview.refresh",
+        "title": "Sätteri: Refresh Preview",
+        "icon": {
+          "dark": "./assets/logo/logo_dark.png",
+          "light": "./assets/logo/logo_light.png"
+        }
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "satteriMarkdownPreview.openToSide",
+          "when": "editorLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "satteriMarkdownPreview.refresh",
+          "when": "editorLangId == markdown"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "satteriMarkdownPreview.open",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "when": "editorLangId == markdown && !notebookEditorFocused"
+      },
+      {
+        "command": "satteriMarkdownPreview.openToSide",
+        "key": "ctrl+k v",
+        "mac": "cmd+k v",
+        "when": "editorLangId == markdown && !notebookEditorFocused"
+      }
+    ],
+    "configuration": {
+      "title": "Sätteri Markdown Preview",
+      "properties": {
+        "satteriMarkdownPreview.gfm": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable GitHub Flavored Markdown (tables, strikethrough, task lists, autolinks, footnotes)."
+        },
+        "satteriMarkdownPreview.math": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Parse math expressions (`$…$` inline, `$$…$$` block). Note: v1 renders the parsed math markup but does not bundle a KaTeX/MathML typesetting stylesheet."
+        },
+        "satteriMarkdownPreview.showFrontmatter": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Show the parsed frontmatter block at the top of the preview. When off, frontmatter is hidden."
+        },
+        "satteriMarkdownPreview.customCss": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Path to an extra stylesheet loaded into the preview (loaded after the built-in styles, so its rules win). Absolute, or relative to the document's workspace folder. Changing this to a location outside the workspace requires reopening the preview."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "watch": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test test/unit",
+    "test:watch": "bun test --watch test/unit",
+    "test:integration": "tsdown && node ./test/integration/runTest.cjs",
+    "package": "vsce package",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "satteri": "^0.9.0",
+    "satteri-expressive-code": "^0.1.18"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "@types/node": "^26.1.1",
+    "@types/vscode": "^1.90.0",
+    "@vscode/test-electron": "^3.0.0",
+    "@vscode/vsce": "^3.9.2",
+    "prettier": "^3.9.5",
+    "tsdown": "^0.22.9",
+    "typescript": "^6.0.3"
+  },
+  "trustedDependencies": [
+    "@vscode/vsce-sign",
+    "keytar"
+  ],
+  "exports": {
+    ".": "./dist/extension.cjs",
+    "./package.json": "./package.json"
+  }
+}

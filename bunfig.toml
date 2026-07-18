@@ -1,0 +1,6 @@
+[test]
+# Register the `vscode` / `satteri` module mocks before any test file imports a
+# source module that pulls them in. Unit tests run in plain Bun (no extension
+# host, no native engine); the real modules are exercised by the electron
+# integration pass instead.
+preload = ["./test/setup.ts"]

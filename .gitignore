@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vscode-test/
+media/preview.iife.js
+media/preview.iife.js.map
+*.vsix
+bun.lockb
+.DS_Store
