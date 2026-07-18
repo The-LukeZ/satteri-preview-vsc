@@ -8,8 +8,6 @@ the built-in `markdown-it` renderer.
 
 > **Status:** early development.
 
-<!-- TODO: add a preview screenshot / GIF here before publishing. -->
-
 ![Preview screenshot](/assets/preview_screenshot.png)
 
 ## Development
