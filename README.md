@@ -1,7 +1,5 @@
 # Sätteri Markdown Preview
 
-<img src="/assets/logo/logo_dark.png" alt="Sätteri logo" width="128" height="128"   />
-
 A VS Code extension that renders a live Markdown preview using
 [Sätteri](https://satteri.bruits.org/) (a Rust Markdown/MDX engine) instead of
 the built-in `markdown-it` renderer.
@@ -10,17 +8,14 @@ the built-in `markdown-it` renderer.
 
 ![Preview screenshot](/assets/preview_screenshot.png)
 
-## Development
+## Usage
 
-Package manager is **Bun**.
+Open a Markdown file and you have a few options:
 
-```sh
-bun install
-bun run build
-```
-
-Then press <kbd>F5</kbd> in VS Code to launch the Extension Development Host.
-Open a `.md` file and run **Sätteri: Open Preview** from the command palette or click the preview command in the top-right menu bar.
+1. Click the Extension's Logo button in the top-right menu bar to open the preview.  
+  ![Preview button screenshot](/assets/menubar_button.png)
+2. Press <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> to open the preview in the current editor group.
+3. Press <kbd>Ctrl/Cmd</kbd>+<kbd>P</kbd> and type `Sätteri: Open Preview` to open the preview in the current editor group.
 
 ## Commands & keybindings
 
@@ -48,7 +43,19 @@ installed the two collide. To make Sätteri win, unbind the built-in ones in you
 | `satteriMarkdownPreview.showFrontmatter` | `true`  | Show the frontmatter block at the top of the preview.                  |
 | `satteriMarkdownPreview.customCss`       | `""`    | Path to an extra stylesheet, loaded after the built-in styles.         |
 
-## Testing
+## Development
+
+Package manager is **Bun**.
+
+```sh
+bun install
+bun run build
+```
+
+Then press <kbd>F5</kbd> in VS Code to launch the Extension Development Host.
+Open a `.md` file and run **Sätteri: Open Preview** from the command palette or click the preview command in the top-right menu bar.
+
+### Testing
 
 Unit tests run in **Bun** (native `bun:test`); the `vscode` and `satteri`
 modules are mocked (see `test/setup.ts`), so they cover the pure logic - HAST

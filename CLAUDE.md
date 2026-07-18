@@ -44,6 +44,13 @@ Integration tests must run from **Windows Terminal** on this machine (WSL).
    module` on activation ("command not found"), while dev-mode (full
    `node_modules`) still works. Verify with
    `grep -c satteri-expressive-code dist/extension.cjs` → must be `0`.
+   **Shiki theme trim:** `@expressive-code/plugin-shiki` statically imports the
+   full `bundledThemes` registry from `shiki/themes` (~64 themes, ~1.4 MB of
+   code-split chunks), even though only `github-light`/`github-dark` are used.
+   The host build aliases `shiki/themes` → `build/shiki-themes.mjs` (a 2-theme
+   stub) to drop them. `shiki/langs` is intentionally NOT aliased — full
+   language support is kept. Adding a theme in `codeHighlight.ts` requires
+   adding it to the stub too, or Shiki throws "Theme not found" at render.
 2. **Webview script** — `media/preview.ts` → `media/preview.iife.js`. Browser
    IIFE. `clean:false` so it never wipes `media/preview.css`.
 

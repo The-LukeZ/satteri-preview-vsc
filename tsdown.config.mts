@@ -1,6 +1,16 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "tsdown";
 
 const production = process.env.NODE_ENV === "production";
+
+// Replace Shiki's full theme registry (~64 themes, ~1.4 MB of code-split chunks)
+// with a 2-theme stub. The extension pins github-light / github-dark only
+// (src/render/plugins/codeHighlight.ts), but `@expressive-code/plugin-shiki`
+// statically imports `bundledThemes` from `shiki/themes`, so rolldown bundles
+// every theme unless we alias it. `shiki/langs` is left alone (full lang support).
+const shikiThemesStub = fileURLToPath(
+  new URL("./build/shiki-themes.mjs", import.meta.url),
+);
 
 export default defineConfig([
   // Extension host bundle. VS Code loads `main` via require(), so this MUST be
@@ -12,6 +22,9 @@ export default defineConfig([
     format: ["cjs"],
     platform: "node",
     target: "node18",
+    alias: {
+      "shiki/themes": shikiThemesStub,
+    },
     deps: {
       // `vscode` is provided by the host; `satteri` is a native (napi-rs) module
       // that must not be bundled - it is required from node_modules at runtime.
