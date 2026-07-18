@@ -2,7 +2,7 @@
   "name": "satteri-markdown-preview",
   "displayName": "Sätteri Markdown Preview",
   "description": "Live Markdown preview powered by the Sätteri (Rust) Markdown engine.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "thelukez",
   "license": "MIT",
   "engines": {
