@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.2]
+
+### Fixed
+
+- Extension failed to activate after installing from the Marketplace due to
+  the compiled output not being included in the packaged `.vsix`
+
 ## [0.0.1]
 
 First preview release. Live Markdown preview powered by the Sätteri (Rust)
