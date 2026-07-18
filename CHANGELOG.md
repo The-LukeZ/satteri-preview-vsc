@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.0.1] — Unreleased
+## [0.0.1]
 
 First preview release. Live Markdown preview powered by the Sätteri (Rust)
 engine.
