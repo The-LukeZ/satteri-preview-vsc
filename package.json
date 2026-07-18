@@ -113,7 +113,7 @@
     "test": "bun test test/unit",
     "test:watch": "bun test --watch test/unit",
     "test:integration": "tsdown && node ./test/integration/runTest.cjs",
-    "package": "vsce package",
+    "package": "tsdown && vsce package",
     "format": "prettier --write .",
     "release": "bun ./scripts/release.mjs --all-targets"
   },
