@@ -75,15 +75,9 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: "24"
-      - run: bun install --frozen-lockfile
-      - name: Build
-        run: bun run build
-      # Platform-specific vsix: bundles only the native binary present in this
-      # runner's node_modules, tagged with --target so the Marketplace serves
-      # the right one per user OS/arch.
-      - name: Package
-        run: bunx vsce package --target ${{ matrix.target }} -o satteri-markdown-preview-${{ matrix.target }}.vsix
+      - name: Package (via release script)
+        run: bun run scripts/release.mjs --skip-tests --target ${{ matrix.target }}
       - uses: actions/upload-artifact@v7
         with:
           name: vsix-${{ matrix.target }}
-          path: "*.vsix"
+          path: "dist/*.vsix"
