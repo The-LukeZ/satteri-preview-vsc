@@ -15,7 +15,16 @@ export default defineConfig([
     deps: {
       // `vscode` is provided by the host; `satteri` is a native (napi-rs) module
       // that must not be bundled - it is required from node_modules at runtime.
-      neverBundle: ["vscode", "satteri", "satteri-expressive-code"],
+      neverBundle: ["vscode", "satteri"],
+      // tsdown externalizes everything in package.json `dependencies` BY DEFAULT.
+      // `satteri-expressive-code` is a dependency, so it (and its transitive tree
+      // expressive-code / shiki / hastscript / ...) would ship as bare
+      // `require("satteri-expressive-code")` in extension.cjs and throw
+      // `Cannot find module` on activation ("command not found"), since those
+      // packages are NOT whitelisted in .vscodeignore. `alwaysBundle` overrides
+      // the default and inlines the whole tree into dist/, which is shipped.
+      // (Removing it from neverBundle is NOT enough - the dependency-default wins.)
+      alwaysBundle: ["satteri-expressive-code"],
     },
     dts: false,
     clean: true,

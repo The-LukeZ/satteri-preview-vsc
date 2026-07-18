@@ -11,14 +11,17 @@ PLAN.md
 **/*.map
 
 # Strip node_modules, but KEEP the satteri runtime + its native binaries.
-# napi-rs ships the per-platform native binaries as SCOPED packages under
-# @bruits/ (e.g. @bruits/satteri-win32-x64-msvc). The `satteri` and
-# `satteri-expressive-code` packages are the JS wrappers. bun/npm only install
-# the @bruits/* optionalDependency matching the current os/cpu, so a vsix built
-# on one platform ships only that platform's binary - use `vsce package
-# --target <platform>` per target (see .github/workflows/ci.yml) for multi-
-# platform Marketplace releases.
+# `satteri` is external (see tsdown.config.mts neverBundle) because it is a
+# native napi-rs module. napi-rs ships the per-platform binaries as SCOPED
+# packages under @bruits/ (e.g. @bruits/satteri-win32-x64-msvc); bun/npm only
+# install the @bruits/* optionalDependency matching the current os/cpu, so a
+# vsix built on one platform ships only that platform's binary - use `vsce
+# package --target <platform>` per target (see .github/workflows/ci.yml) for
+# multi-platform Marketplace releases.
+#
+# satteri-expressive-code + its tree (expressive-code, shiki, ...) are NOT
+# whitelisted on purpose: they are bundled into dist/, so shipping them loose
+# would be dead weight.
 node_modules/**
 !node_modules/satteri/**
-!node_modules/satteri-expressive-code/**
 !node_modules/@bruits/**

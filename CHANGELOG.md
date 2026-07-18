@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.3]
+
+### Fixed
+
+- Extension failed to activate from the Marketplace with `command 'satteriMarkdownPreview.openToSide' not found`. Root cause: tsdown externalizes
+  every `package.json` dependency by default, so `dist/extension.cjs` shipped a bare `require("satteri-expressive-code")`; that package (and its
+  `expressive-code` / `shiki` tree) is not whitelisted in `.vscodeignore`, so the `.vsix` omitted it and activation threw `Cannot find module`.
+  Fixed by force-bundling the tree into `dist/` via tsdown `deps.alwaysBundle`. Development and integration tests were unaffected because they run against the full `node_modules`.
+
 ## [0.0.2]
 
 ### Fixed

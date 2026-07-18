@@ -2,27 +2,48 @@
   "name": "satteri-markdown-preview",
   "displayName": "Sätteri Markdown Preview",
   "description": "Live Markdown preview powered by the Sätteri (Rust) Markdown engine.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "thelukez",
   "license": "MIT",
   "engines": {
     "vscode": "^1.90.0"
   },
-  "categories": [
-    "Other"
-  ],
-  "icon": "./assets/logo/logo_dark.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/The-LukeZ/satteri-preview-vsc.git"
-  },
-  "bugs": {
-    "url": "https://github.com/The-LukeZ/satteri-preview-vsc/issues"
-  },
-  "homepage": "https://github.com/The-LukeZ/satteri-preview-vsc#readme",
   "main": "./dist/extension.cjs",
+  "exports": {
+    ".": "./dist/extension.cjs",
+    "./package.json": "./package.json"
+  },
   "activationEvents": [
     "onLanguage:markdown"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "watch": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test test/unit",
+    "test:watch": "bun test --watch test/unit",
+    "test:integration": "tsdown && node ./test/integration/runTest.cjs",
+    "package": "NODE_ENV=production tsdown && bun run release",
+    "release": "bun ./scripts/release.mjs --all-targets",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "satteri": "^0.9.0",
+    "satteri-expressive-code": "^0.1.18"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "@types/node": "^26.1.1",
+    "@types/vscode": "^1.90.0",
+    "@vscode/test-electron": "^3.0.0",
+    "@vscode/vsce": "^3.9.2",
+    "prettier": "^3.9.5",
+    "tsdown": "^0.22.9",
+    "typescript": "^6.0.3"
+  },
+  "trustedDependencies": [
+    "@vscode/vsce-sign",
+    "keytar"
   ],
   "contributes": {
     "commands": [
@@ -106,37 +127,60 @@
       }
     }
   },
-  "scripts": {
-    "build": "tsdown",
-    "watch": "tsdown --watch",
-    "typecheck": "tsc --noEmit",
-    "test": "bun test test/unit",
-    "test:watch": "bun test --watch test/unit",
-    "test:integration": "tsdown && node ./test/integration/runTest.cjs",
-    "package": "NODE_ENV=production tsdown && bun run release",
-    "format": "prettier --write .",
-    "release": "bun ./scripts/release.mjs --all-targets"
-  },
-  "dependencies": {
-    "satteri": "^0.9.0",
-    "satteri-expressive-code": "^0.1.18"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.3.14",
-    "@types/node": "^26.1.1",
-    "@types/vscode": "^1.90.0",
-    "@vscode/test-electron": "^3.0.0",
-    "@vscode/vsce": "^3.9.2",
-    "prettier": "^3.9.5",
-    "tsdown": "^0.22.9",
-    "typescript": "^6.0.3"
-  },
-  "trustedDependencies": [
-    "@vscode/vsce-sign",
-    "keytar"
+  "categories": [
+    "Other"
   ],
-  "exports": {
-    ".": "./dist/extension.cjs",
-    "./package.json": "./package.json"
+  "icon": "./assets/logo/logo_dark.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/The-LukeZ/satteri-preview-vsc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/The-LukeZ/satteri-preview-vsc/issues"
+  },
+  "homepage": "https://github.com/The-LukeZ/satteri-preview-vsc#readme",
+  "inlinedDependencies": {
+    "@ctrl/tinycolor": "4.2.0",
+    "@expressive-code/core": "0.42.0",
+    "@expressive-code/plugin-frames": "0.42.0",
+    "@expressive-code/plugin-shiki": "0.42.0",
+    "@expressive-code/plugin-text-markers": "0.42.0",
+    "@shikijs/core": "4.3.1",
+    "@shikijs/engine-javascript": "4.3.1",
+    "@shikijs/engine-oniguruma": "4.3.1",
+    "@shikijs/langs": "4.3.1",
+    "@shikijs/primitive": "4.3.1",
+    "@shikijs/themes": "4.3.1",
+    "@shikijs/types": "4.3.1",
+    "@shikijs/vscode-textmate": "10.0.2",
+    "ccount": "2.0.1",
+    "character-entities-html4": "2.1.0",
+    "character-entities-legacy": "3.0.0",
+    "comma-separated-tokens": "2.0.3",
+    "cssesc": "3.0.0",
+    "expressive-code": "0.42.0",
+    "hast-util-parse-selector": "4.0.0",
+    "hast-util-to-html": "9.0.5",
+    "hast-util-whitespace": "3.0.0",
+    "hastscript": "9.0.1",
+    "html-void-elements": "3.0.0",
+    "nanoid": "3.3.16",
+    "oniguruma-parser": "0.12.2",
+    "oniguruma-to-es": "4.3.6",
+    "picocolors": "1.1.1",
+    "postcss": "8.5.19",
+    "postcss-nested": "6.2.0",
+    "postcss-selector-parser": "6.1.4",
+    "property-information": "7.2.0",
+    "regex": "6.1.0",
+    "regex-recursion": "6.0.2",
+    "regex-utilities": "2.3.0",
+    "satteri-expressive-code": "0.1.18",
+    "shiki": "4.3.1",
+    "source-map-js": "1.2.1",
+    "space-separated-tokens": "2.0.2",
+    "stringify-entities": "4.0.4",
+    "util-deprecate": "1.0.2",
+    "zwitch": "2.0.4"
   }
 }
