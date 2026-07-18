@@ -3,7 +3,7 @@
   "displayName": "Sätteri Markdown Preview",
   "description": "Live Markdown preview powered by the Sätteri (Rust) Markdown engine.",
   "version": "0.0.1",
-  "publisher": "the-lukezz",
+  "publisher": "thelukez",
   "license": "MIT",
   "engines": {
     "vscode": "^1.90.0"
