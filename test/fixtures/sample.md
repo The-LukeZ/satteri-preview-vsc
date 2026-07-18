@@ -28,3 +28,5 @@ export const answer: number = 42;
 small test after code block
 
 `some inline code with backticks`
+
+![test image 2](/assets/logo_dark.png)

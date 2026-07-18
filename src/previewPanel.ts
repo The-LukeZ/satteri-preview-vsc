@@ -100,12 +100,18 @@ export class PreviewPanel {
     let body: string;
     try {
       const docDir = vscode.Uri.joinPath(this.document.uri, "..");
+      // `/`-rooted refs resolve against the workspace root (GitHub semantics);
+      // outside a workspace, fall back to the doc's own dir. Mirrors the
+      // whitelist in resourceRoots().
+      const rootDir =
+        vscode.workspace.getWorkspaceFolder(this.document.uri)?.uri ?? docDir;
       body = (
         await this.renderer.render(
           this.document,
           mode,
           this.panel.webview,
           docDir,
+          rootDir,
           config,
         )
       ).html;

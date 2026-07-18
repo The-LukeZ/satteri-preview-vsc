@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.0.4]
+
+### Fixed
+
+- Local images/links using a root-relative path (`/assets/img.png`, GitHub
+  repo-root style) rendered as broken/not-found. They were passed through
+  untouched, so the webview resolved them against its own origin root instead of
+  a real file. They now resolve against the workspace root (falling back to the
+  document's directory outside a workspace), matching VS Code's built-in
+  Markdown preview. Document-relative (`./img.png`) and absolute (`https:`,
+  `data:`, `file:`) references are unchanged.
+
+### Changed
+
+- Trimmed the bundled Shiki theme registry to the two themes actually used
+  (`github-light` / `github-dark`) by aliasing `shiki/themes` to a stub at build
+  time, dropping ~1.4 MB of unused theme chunks from `dist/`. Full language
+  grammar support is unchanged.
+
 ## [0.0.3]
 
 ### Fixed

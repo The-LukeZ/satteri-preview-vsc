@@ -18,9 +18,10 @@ const webview = {
 } as never;
 
 const docDir = Uri.file("/home/user/docs");
+const rootDir = Uri.file("/home/user");
 
 function visitEl(tagName: string, properties: Record<string, unknown>): Node {
-  const plugin = resourceUrisPlugin(webview, docDir) as unknown as {
+  const plugin = resourceUrisPlugin(webview, docDir, rootDir) as unknown as {
     element: {
       visit: (
         n: Node,
@@ -59,13 +60,19 @@ describe("resourceUrisPlugin", () => {
     ["https://example.com/x.png"],
     ["data:image/png;base64,AAAA"],
     ["//cdn.example.com/x.png"],
-    ["/workspace-absolute.png"],
     ["#in-page-anchor"],
     ["mailto:a@b.com"],
     [""],
   ])("passes through absolute/special reference %s", (ref) => {
     const n = visitEl("img", { src: ref });
     expect(n.properties.src).toBe(ref);
+  });
+
+  it("resolves a /-rooted (GitHub-style) path against the workspace root", () => {
+    const n = visitEl("img", { src: "/assets/logo.png" });
+    expect(n.properties.src).toBe(
+      "https://vscode-webview.example/home/user/assets/logo.png",
+    );
   });
 
   it("splits a ?query/#hash suffix before joining and reattaches it", () => {

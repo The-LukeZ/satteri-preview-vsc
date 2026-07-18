@@ -36,6 +36,7 @@ export class Renderer {
     mode: ThemeMode,
     webview: vscode.Webview,
     docDir: vscode.Uri,
+    rootDir: vscode.Uri,
     config: PreviewConfig,
   ): Promise<RenderResult> {
     const sig = renderSignature(config);
@@ -59,7 +60,7 @@ export class Renderer {
       features,
       hastPlugins: [
         headingAnchorsPlugin,
-        resourceUrisPlugin(webview, docDir),
+        resourceUrisPlugin(webview, docDir, rootDir),
         codeHighlightPlugin(mode),
       ],
     });

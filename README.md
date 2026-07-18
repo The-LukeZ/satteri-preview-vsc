@@ -6,14 +6,14 @@ the built-in `markdown-it` renderer.
 
 > **Status:** early development.
 
-![Preview screenshot](/assets/preview_screenshot.png)
+![Preview screenshot](./assets/preview_screenshot.png)
 
 ## Usage
 
 Open a Markdown file and you have a few options:
 
 1. Click the Extension's Logo button in the top-right menu bar to open the preview.  
-  ![Preview button screenshot](/assets/menubar_button.png)
+   ![Preview button screenshot](./assets/menubar_button.png)
 2. Press <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> to open the preview in the current editor group.
 3. Press <kbd>Ctrl/Cmd</kbd>+<kbd>P</kbd> and type `Sätteri: Open Preview` to open the preview in the current editor group.
 
